@@ -21,7 +21,7 @@ public class TestController {
 	public ModelAndView main() {
 		System.out.println("掉到了");
 		return new ModelAndView("index");
-	}
+	} 
 
 	@ResponseBody
 	@RequestMapping(value = "/upload.do", method = RequestMethod.POST)
