@@ -1,0 +1,157 @@
+<script type="text/javascript">
+	function pic_upload_success(file, data) {
+		var json = $.parseJSON(data)
+		$(this).bjuiajax('ajaxDone', json)
+		if (json[BJUI.keys.statusCode] == BJUI.statusCode.ok) {
+			$('#j_custom_pic1').val(json.navTabId).trigger('validate')
+			$(this).navtab('reloadForm', true)
+		}
+	}
+</script>
+<div class="bjui-pageHeader">
+	<form id="pagerForm" data-toggle="ajaxsearch"
+		action="repertory-data.html" method="post">
+		<input type="hidden" name="pageSize" value="${model.pageSize}">
+		<input type="hidden" name="pageCurrent" value="${model.pageCurrent}">
+		<input type="hidden" name="orderField" value="${param.orderField}">
+		<input type="hidden" name="orderDirection"
+			value="${param.orderDirection}">
+
+		<div class="bjui-searchBar">
+			<label>公司名称：</label><input type="text" id="customNo" value=""
+				name="code" class="form-control" size="10">&nbsp; <label
+				for="j_custom_birthday" class="doc_datepicker">日期：</label> <input
+				type="text" class="doc_datepicker" data-toggle="datepicker"
+				size="12"> <label>规格：</label><input type="text" value=""
+				name="name" class="form-control" size="8">&nbsp;
+			<button type="button" class="showMoreSearch" data-toggle="moresearch"
+				data-name="custom2">
+				<i class="fa fa-angle-double-down"></i>
+			</button>
+			<button type="submit" class="btn-default" data-icon="search">查询</button>
+			<a class="btn btn-orange" href="javascript:;"
+				data-toggle="reloadsearch" data-clear-query="true" data-icon="undo">清空查询</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+
+			<div class="pull-right">
+				<div class="btn-group">
+					<button type="button" class="btn-default dropdown-toggle"
+						data-toggle="dropdown" data-icon="copy">
+						复选框-批量操作<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu right" role="menu">
+						<li><a href="book1.xlsx" data-toggle="doexport"
+							data-confirm-msg="确定要导出信息吗？">导出<span style="color: green;">全部</span></a></li>
+						<li><a href="book1.xlsx" data-toggle="doexportchecked"
+							data-confirm-msg="确定要导出选中项吗？" data-idname="expids"
+							data-group="ids">导出<span style="color: red;">选中</span></a></li>
+						<li class="divider"></li>
+						<li><a href="ajaxDone2.html" data-toggle="doajaxchecked"
+							data-confirm-msg="确定要删除选中项吗？" data-idname="delids"
+							data-group="ids">删除选中</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="bjui-moreSearch">
+			<label>品名：</label><input type="text" value="" name="profession"
+				size="15" /> </select> <label>&nbsp;重量:</label> <input type="text" value=""
+				name="mobile" size="10">
+			<div style="display: inline-block; vertical-align: middle;">
+				<div id="j_custom_pic_up1" data-toggle="upload"
+					data-uploader="http://localhost:8050/zhangzhi/upload.do"
+					data-file-size-limit="1024*2"
+					data-file-type-exts="*.jpg;*.png;*.gif;*.mpg;*.doc"
+					data-multi="false" data-on-upload-success="pic_upload_success"
+					data-icon="cloud-upload" data-preview-img="false">
+					<label>出库单导入:</label>
+				</div>
+				<input type="hidden" name="custom.pic1" value="" id="j_custom_pic1"
+					data-target="#j_custom_pic_up1 .bjui-upload-select-file"> <span
+					id="j_custom_span_pic1"></span>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="bjui-pageContent">
+	<!-- <div class="bjui-headBar">
+		<div style="display: inline-block; vertical-align: middle;">
+			<div id="j_custom_pic_up1" data-toggle="upload"
+				data-uploader="http://localhost:8050/zhangzhi/upload.do"
+				data-file-size-limit="1024*2"
+				data-file-type-exts="*.jpg;*.png;*.gif;*.mpg;*.doc"
+				data-multi="false" data-on-upload-success="pic_upload_success"
+				data-icon="cloud-upload" data-preview-img="false">
+				<label>出库单导入:</label>
+			</div>
+			<input type="hidden" name="custom.pic1" value="" id="j_custom_pic1"
+				data-target="#j_custom_pic_up1 .bjui-upload-select-file"> <span
+				id="j_custom_span_pic1"></span>
+		</div>
+	</div> -->
+	<table class="table table-bordered table-hover table-striped table-top"
+		data-layout-h="0" data-selected-multi="true">
+		<thead>
+			<tr>
+				<th width="26"><input type="checkbox" class="checkboxCtrl"
+					data-group="ids" data-toggle="icheck"></th> 
+				<th data-order-field="date">日期</th>
+				<th data-order-field="productname">品名</th>
+				<th data-order-field="measurement">规格</th>
+				<th data-order-field="leave">结余</th>
+				<th data-order-field="type">入</th>
+				<th data-order-field="type">出</th>
+				<!-- <th width="100">操作</th> -->
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-id="1">
+				<td><input type="checkbox" name="ids" data-toggle="icheck"
+					value="1"></td>
+				<td>2015-02-11</td>
+				<td>H型钢</td>
+				<td>3mm</td>
+				<th>1</th>
+				<td>1</td>
+				<td></td>
+			<!-- 	<td><a href="repertory-data-detail.html?id=1"
+					data-id="rep-form" class="btn btn-green" data-toggle="navtab"
+					data-reload-warn="本页已有打开的内容，确定将刷新本页内容，是否继续？" data-title="编辑-孙悟空">编辑</a>
+					<a href="ajaxDone2.html" class="btn btn-red" data-toggle="doajax"
+					data-confirm-msg="确定要删除该行信息吗？">删</a></td> -->
+			</tr>
+			<tr data-id="2">
+				<td><input type="checkbox" name="ids" data-toggle="icheck"
+					value="2"></td>
+				<td>2015-02-12</td>
+				<td>冷轧</td>
+				<td>2mm</td>
+				<th>1</th>
+				<td></td>
+				<td>2</td>
+			<!-- 	<td><a href="repertory-data-detail.html?id=2"
+					data-id="rep-form" class="btn btn-green" data-toggle="navtab"
+					data-reload-warn="本页已有打开的内容，确定将刷新本页内容，是否继续？" data-title="编辑-唐僧">编辑</a>
+					<a href="ajaxDone2.html" class="btn btn-red" data-toggle="doajax"
+					data-confirm-msg="确定要删除该行信息吗？">删</a></td> -->
+			</tr>
+		</tbody>
+	</table>
+	<div class="bjui-footBar">
+		<div class="pages">
+			<span>每页&nbsp;</span>
+			<div class="selectPagesize">
+				<select data-toggle="selectpicker"
+					data-toggle-change="changepagesize">
+					<option value="30">30</option>
+					<option value="60">60</option>
+					<option value="120">120</option>
+					<option value="150">150</option>
+				</select>
+			</div>
+			<span>&nbsp;条，共 600 条</span>
+		</div>
+		<div class="pagination-box" data-toggle="pagination" data-total="600"
+			data-page-size="30" data-page-current="1"></div>
+	</div>
+</div>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<process displayName="mytest" name="mytest">
+<start displayName="start1" layout="90,195,-1,-1" name="start1">
+<transition g="" name="transition1" offset="0,0" to="decision1"/>
+</start>
+<decision displayName="decision1" layout="217,195,61,48" name="decision1">
+<transition expr="aa" g="241,141" name="transition2" offset="0,0" to="task1"/>
+<transition g="" name="transition3" offset="0,0" to="task2"/>
+<transition g="241,306" name="transition4" offset="0,0" to="task3"/>
+</decision>
+<task autoExecute="Y" displayName="task1" layout="336,120,-1,-1" name="task1" performType="ANY" taskType="Major">
+<transition g="" name="transition5" offset="0,0" to="end1"/>
+</task>
+<task autoExecute="Y" displayName="task2" layout="340,199,-1,-1" name="task2" performType="ANY" taskType="Major">
+<transition g="" name="transition6" offset="0,0" to="end1"/>
+</task>
+<task autoExecute="Y" displayName="task3" layout="340,280,-1,-1" name="task3" performType="ANY" taskType="Major">
+<transition g="" name="transition7" offset="0,0" to="end1"/>
+</task>
+<end displayName="end1" layout="508,199,-1,-1" name="end1"/>
+</process>

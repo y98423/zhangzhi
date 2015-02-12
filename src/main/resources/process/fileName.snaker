@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<process displayName="test1" name="test1">
+<start displayName="start1" layout="56,56,-1,-1" name="start1">
+<transition g="" name="transition1" offset="0,0" to="task1"/>
+</start>
+<end displayName="end1" layout="440,142,-1,-1" name="end1"/>
+<task autoExecute="Y" displayName="退款申请" layout="141,60,-1,-1" name="task1" performType="ANY" taskType="Major">
+<transition g="" name="transition2" offset="0,0" to="task2"/>
+</task>
+<task autoExecute="Y" displayName="客服审批" layout="256,58,-1,-1" name="task2" performType="ANY" taskType="Major">
+<transition g="" name="transition3" offset="0,0" to="decision1"/>
+</task>
+<decision displayName="decision1" layout="275,139,7,5" name="decision1">
+<transition displayName="时间大于7天" g="" name="transition4" offset="-1,-1" to="task3"/>
+<transition displayName="时间不大于7天" g="" name="transition5" offset="0,0" to="end1"/>
+</decision>
+<task autoExecute="Y" displayName="时间大于7天" layout="256,276,-1,-1" name="task3" performType="ANY" taskType="Major">
+<transition g="" name="transition6" offset="0,0" to="end1"/>
+</task>
+</process>
